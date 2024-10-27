@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>cmonBruh</title>
+    <meta name="description" content="cmonBruh">
+    <meta property="og:title" content="cmonBruh">
+    <meta property="og:description" content="cmonBruh">
+    <meta property="og:image" content="https://static-cdn.jtvnw.net/emoticons/v2/84608/default/dark/2.0">
+    <link rel="icon" href="https://static-cdn.jtvnw.net/emoticons/v2/84608/default/dark/2.0" type="image/x-icon" />
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Bangers&display=swap');
+
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #1a1a1a;
+            font-family: 'Bangers', cursive;
+            color: #ffffff;
+            cursor: none;
+        }
+        #background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, #ff00de, #00ff00, #0000ff, #ff0000, #ffff00, #00ffff);
+            background-size: 600% 600%;
+            animation: gradientBG 20s ease infinite;
+            opacity: 0.2;
+        }
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        .floating-emote {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background-image: url('https://static-cdn.jtvnw.net/emoticons/v2/84608/default/dark/2.0');
+            background-size: contain;
+            background-repeat: no-repeat;
+            animation: float 20s ease-in-out infinite;
+            transition: transform 0.3s ease;
+            filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.7));
+        }
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) rotate(0deg) scale(1); }
+            25% { transform: translate(25vw, -25vh) rotate(90deg) scale(1.2); }
+            50% { transform: translate(50vw, 50vh) rotate(180deg) scale(1.5); }
+            75% { transform: translate(-25vw, 75vh) rotate(270deg) scale(1.2); }
+        }
+        h1 {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 6em;
+            text-align: center;
+            text-shadow: 2px 2px 4px #000000, 0 0 25px #ff00de, 0 0 5px #ff00de;
+            z-index: 1000;
+            animation: textGlow 2s infinite, textWave 3s ease-in-out infinite;
+            white-space: nowrap;
+            letter-spacing: 2px;
+        }
+        @keyframes textGlow {
+            0%, 100% { text-shadow: 2px 2px 4px #000000, 0 0 25px #ff00de, 0 0 5px #ff00de; }
+            33% { text-shadow: 2px 2px 4px #000000, 0 0 50px #00ff00, 0 0 10px #00ff00; }
+            66% { text-shadow: 2px 2px 4px #000000, 0 0 50px #0000ff, 0 0 10px #0000ff; }
+        }
+        @keyframes textWave {
+            0%, 100% { transform: translate(-50%, -50%) rotate(0deg) scale(1); }
+            25% { transform: translate(-50%, -50%) rotate(5deg) scale(1.05); }
+            50% { transform: translate(-50%, -50%) rotate(0deg) scale(1.1); }
+            75% { transform: translate(-50%, -50%) rotate(-5deg) scale(1.05); }
+        }
+        #custom-cursor {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            background-image: url('https://static-cdn.jtvnw.net/emoticons/v2/84608/default/dark/2.0');
+            background-size: contain;
+            background-repeat: no-repeat;
+            pointer-events: none;
+            z-index: 9999;
+            transition: transform 0.1s ease;
+            filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.7));
+        }
+        .sparkle {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: #ffffff;
+            border-radius: 50%;
+            pointer-events: none;
+            animation: sparkle 1s forwards;
+        }
+        @keyframes sparkle {
+            0% { transform: scale(0) rotate(0deg); opacity: 1; }
+            100% { transform: scale(1) rotate(180deg); opacity: 0; }
+        }
+        #emote-burst {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1001;
+            display: none;
+        }
+        .geometric-shape {
+            position: absolute;
+            opacity: 0.3;
+            animation: shapeFloat 30s linear infinite;
+            filter: blur(2px);
+        }
+        @keyframes shapeFloat {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            100% { transform: translate(100vw, 100vh) rotate(360deg); }
+        }
+        #emote-rain-button {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 15px 30px;
+            font-size: 24px;
+            background-color: rgba(255, 255, 255, 0.2);
+            border: 2px solid rgba(255, 255, 255, 0.4);
+            border-radius: 50px;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 1002;
+            font-family: 'Bangers', cursive;
+            letter-spacing: 1px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+        #emote-rain-button:hover {
+            background-color: rgba(255, 255, 255, 0.4);
+            transform: translateX(-50%) scale(1.05);
+        }
+        #emote-rain-button:active {
+            transform: translateX(-50%) scale(0.95);
+        }
+    </style>
+</head>
+<body>
+    <div id="background"></div>
+    <h1>cmonBruh</h1>
+    <div id="custom-cursor"></div>
+    <div id="emote-burst"></div>
+    <button id="emote-rain-button">Emote Rain!</button>
+    <script>
+        function createEmote() {
+            const emote = document.createElement('div');
+            emote.classList.add('floating-emote');
+            emote.style.left = `${Math.random() * 100}vw`;
+            emote.style.top = `${Math.random() * 100}vh`;
+            emote.style.animationDuration = `${20 + Math.random() * 20}s`;
+            document.body.appendChild(emote);
+        }
+
+        for (let i = 0; i < 30; i++) {
+            createEmote();
+        }
+
+        setInterval(createEmote, 2000);
+
+        const cursor = document.getElementById('custom-cursor');
+        
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = `${e.clientX - 30}px`;
+            cursor.style.top = `${e.clientY - 30}px`;
+            createSparkle(e.clientX, e.clientY);
+        });
+
+        function createSparkle(x, y) {
+            const sparkle = document.createElement('div');
+            sparkle.classList.add('sparkle');
+            sparkle.style.left = `${x}px`;
+            sparkle.style.top = `${y}px`;
+            document.body.appendChild(sparkle);
+            setTimeout(() => sparkle.remove(), 1000);
+        }
+
+        document.addEventListener('click', (e) => {
+            cursor.style.transform = 'scale(0.8)';
+            setTimeout(() => cursor.style.transform = 'scale(1)', 100);
+            createEmoteBurst(e.clientX, e.clientY);
+        });
+
+        function createEmoteBurst(x, y) {
+            const burst = document.getElementById('emote-burst');
+            burst.style.left = `${x}px`;
+            burst.style.top = `${y}px`;
+            burst.style.display = 'block';
+            burst.innerHTML = '';
+
+            for (let i = 0; i < 20; i++) {
+                const emote = document.createElement('img');
+                emote.src = 'https://static-cdn.jtvnw.net/emoticons/v2/84608/default/dark/2.0';
+                emote.style.position = 'absolute';
+                emote.style.width = '30px';
+                emote.style.height = '30px';
+                emote.style.transform = `translate(${(Math.random() - 0.5) * 100}px, ${(Math.random() - 0.5) * 100}px)`;
+                emote.style.transition = 'all 0.5s ease-out';
+                emote.style.opacity = '0';
+                burst.appendChild(emote);
+
+                setTimeout(() => {
+                    emote.style.transform = `translate(${(Math.random() - 0.5) * 300}px, ${(Math.random() - 0.5) * 300}px)`;
+                    emote.style.opacity = '1';
+                }, 10);
+
+                setTimeout(() => {
+                    emote.style.opacity = '0';
+                }, 400);
+            }
+
+            setTimeout(() => burst.style.display = 'none', 1000);
+        }
+
+        function createGeometricShape() {
+            const shape = document.createElement('div');
+            shape.classList.add('geometric-shape');
+            const size = 20 + Math.random() * 80;
+            shape.style.width = `${size}px`;
+            shape.style.height = `${size}px`;
+            shape.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
+            shape.style.left = `${Math.random() * 100}vw`;
+            shape.style.top = `${Math.random() * 100}vh`;
+            shape.style.borderRadius = Math.random() > 0.5 ? '50%' : '0';
+            shape.style.animationDuration = `${30 + Math.random() * 40}s`;
+            document.body.appendChild(shape);
+        }
+
+        for (let i = 0; i < 40; i++) {
+            createGeometricShape();
+        }
+
+        document.getElementById('emote-rain-button').addEventListener('click', () => {
+            for (let i = 0; i < 50; i++) {
+                setTimeout(() => {
+                    createEmote();
+                }, i * 100);
+            }
+        });
+    </script>
+</body>
+</html>
